@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioResource {
@@ -21,7 +23,7 @@ public class UsuarioResource {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<UsuarioResponse> salvar(@RequestBody UsuarioRequest usuarioRequest) {
+    public ResponseEntity<UsuarioResponse> salvar(@Valid @RequestBody UsuarioRequest usuarioRequest) {
         Usuario usuario = usuarioService.salvar(converterParaUsuario(usuarioRequest));
         return ResponseEntity.status(HttpStatus.CREATED).body(converterParaUsuarioResponse(usuario));
     }
