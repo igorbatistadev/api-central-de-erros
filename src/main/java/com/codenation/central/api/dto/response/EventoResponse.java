@@ -1,6 +1,7 @@
 package com.codenation.central.api.dto.response;
 
 import com.codenation.central.api.model.enums.Level;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ public class EventoResponse {
     private Level level;
     private String descricao;
     private String origem;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", locale = "pt-BR", timezone = "Brazil/East")
     private LocalDate data;
     private Integer quantidade;
 }

@@ -27,7 +27,7 @@ public class EventoResource {
     private EventoService eventoService;
 
     @PostMapping
-    public ResponseEntity<Evento> salvar(@RequestBody EventoRequest eventoRequest) {
+    public ResponseEntity<Evento> salvar(@Valid @RequestBody EventoRequest eventoRequest) {
         Evento evento = eventoService.salvar(converterParaEvento(eventoRequest));
         return ResponseEntity.status(HttpStatus.CREATED).body(evento);
     }
