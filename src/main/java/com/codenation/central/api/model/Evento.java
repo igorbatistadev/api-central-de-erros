@@ -15,6 +15,7 @@ public class Evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long idUsuario;
+    @Enumerated(EnumType.STRING)
     private Level level;
     private String descricao;
     private String log;
