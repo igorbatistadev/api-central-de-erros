@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface EventoService {
     Evento salvar(Evento evento);
-    Page<Evento> buscarEventosPorUsuario(Pageable pageable);
+    Page<Evento> buscarEventosPorUsuario(Evento evento, Pageable pageable);
 }

@@ -34,8 +34,8 @@ public class EventoResource {
     }
 
     @GetMapping
-    public ResponseEntity<Page<EventoResponse>> buscarEventosPorUsuario(Pageable pageable) {
-        Page<Evento> eventos = eventoService.buscarEventosPorUsuario(pageable);
+    public ResponseEntity<Page<EventoResponse>> buscarEventosPorUsuario(EventoRequest eventoRequest,Pageable pageable) {
+        Page<Evento> eventos = eventoService.buscarEventosPorUsuario(converterParaEvento(eventoRequest) ,pageable);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(eventos.map(evento -> converterParaEventoResponse(evento)));
     }
