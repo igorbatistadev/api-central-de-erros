@@ -10,12 +10,13 @@ import com.codenation.central.api.service.interfaces.EventoService;
 import com.codenation.central.api.service.interfaces.UsuarioService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -32,7 +33,18 @@ public class EventoResource {
         return ResponseEntity.status(HttpStatus.CREATED).body(evento);
     }
 
+    @GetMapping
+    public ResponseEntity<Page<EventoResponse>> buscarEventosPorUsuario(Pageable pageable) {
+        Page<Evento> eventos = eventoService.buscarEventosPorUsuario(pageable);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(eventos.map(evento -> converterParaEventoResponse(evento)));
+    }
+
     private Evento converterParaEvento(EventoRequest eventoRequest) {
         return new ModelMapper().map(eventoRequest, Evento.class);
+    }
+
+    private EventoResponse converterParaEventoResponse(Evento evento) {
+        return new ModelMapper().map(evento, EventoResponse.class);
     }
 }
