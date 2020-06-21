@@ -27,6 +27,7 @@ public class EventoRequest {
     @NotNull(message = "Campo data não pode ser nulo")
     @PastOrPresent(message = "Campo data deve estar no passado ou no presente")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", locale = "pt-BR", timezone = "Brazil/East")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate data;
     @NotNull(message = "Campo quantidade não pode ser nulo")
     @Positive(message = "Campo quantidade deve ser um valor positivo")
