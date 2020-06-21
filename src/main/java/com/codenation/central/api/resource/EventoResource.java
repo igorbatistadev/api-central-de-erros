@@ -4,6 +4,7 @@ import com.codenation.central.api.dto.request.EventoRequest;
 import com.codenation.central.api.dto.request.UsuarioRequest;
 import com.codenation.central.api.dto.response.EventoResponse;
 import com.codenation.central.api.dto.response.UsuarioResponse;
+import com.codenation.central.api.handler.ResourceNotFoundException;
 import com.codenation.central.api.model.Evento;
 import com.codenation.central.api.model.Usuario;
 import com.codenation.central.api.service.interfaces.EventoService;
@@ -43,13 +44,9 @@ public class EventoResource {
 
     @GetMapping("/{id}")
     public ResponseEntity<Evento> buscarEventosPorUsuario(@PathVariable Long id) {
-        Optional<Evento> eventoOptional = eventoService.buscarPorId(id);
-
-        if (eventoOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(eventoOptional.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        Evento evento = eventoService.buscarPorId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Evento de id " + id + " não existe, ou não pertence ao usuário logado"));
+        return ResponseEntity.status(HttpStatus.OK).body(evento);
     }
 
     private Evento converterParaEvento(EventoRequest eventoRequest) {

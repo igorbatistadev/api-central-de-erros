@@ -4,6 +4,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -13,6 +15,17 @@ import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class CentralExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(value = { ResourceNotFoundException.class })
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<Object> handleResourceNotFound(ResourceNotFoundException ex) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .title("Recurso não encontrado")
+                .status(HttpStatus.NOT_FOUND.value())
+                .detail(ex.getMessage())
+                .build();
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,
