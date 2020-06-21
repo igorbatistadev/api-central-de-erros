@@ -1,6 +1,5 @@
 package com.codenation.central.api.service.impl;
 
-import com.codenation.central.api.dto.request.EventoRequest;
 import com.codenation.central.api.model.Evento;
 import com.codenation.central.api.repository.EventoRepository;
 import com.codenation.central.api.service.interfaces.EventoService;
@@ -11,6 +10,8 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class EventoServiceImpl implements EventoService {
@@ -30,10 +31,14 @@ public class EventoServiceImpl implements EventoService {
         Example<Evento> eventoExample =
                 Example.of(evento,
                         ExampleMatcher.matching()
-                            .withIgnoreCase()
-                            .withIgnoreNullValues()
-                            .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
+                                .withIgnoreCase()
+                                .withIgnoreNullValues()
+                                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
         return eventoRepository.findAll(eventoExample, pageable);
     }
 
+    @Override
+    public Optional<Evento> buscarPorId(Long id) {
+        return eventoRepository.findByIdAndIdUsuarioEquals(id, UtilUsuarioAutenticado.getIdUsuarioAutenticado());
+    }
 }

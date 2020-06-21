@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/evento")
@@ -38,6 +39,17 @@ public class EventoResource {
         Page<Evento> eventos = eventoService.buscarEventosPorUsuario(converterParaEvento(eventoRequest) ,pageable);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(eventos.map(evento -> converterParaEventoResponse(evento)));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Evento> buscarEventosPorUsuario(@PathVariable Long id) {
+        Optional<Evento> eventoOptional = eventoService.buscarPorId(id);
+
+        if (eventoOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(eventoOptional.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     private Evento converterParaEvento(EventoRequest eventoRequest) {
