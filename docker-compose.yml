@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  docker-postgres:
+    image: postgres:10.13
+    environment:
+      - POSTGRES_DB=central-erros
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+
+  docker-centralerros:
+    container_name: centralerros
+    image: centralerros
+    build: ./
+    ports:
+      - 8080:8080
+    depends_on:
+      - docker-postgres
+    command: bash -c "mvn compile && mvn package && mvn spring-boot:run"
