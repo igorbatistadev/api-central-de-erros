@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3'
 
 services:
   docker-postgres:
@@ -14,8 +14,8 @@ services:
     container_name: centralerros
     image: centralerros
     build: ./
+    restart: on-failure
     ports:
       - 8080:8080
     depends_on:
       - docker-postgres
-    command: bash -c "mvn compile && mvn package && mvn spring-boot:run"
