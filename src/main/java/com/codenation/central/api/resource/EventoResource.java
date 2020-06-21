@@ -23,7 +23,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/evento")
+@RequestMapping("/eventos")
 public class EventoResource {
 
     @Autowired
