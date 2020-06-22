@@ -1,4 +1,4 @@
-# API REST - Central de Erro
+# API REST - Central de Erros
 
 Projeto prático e final do AceleraDev Java Online
 
