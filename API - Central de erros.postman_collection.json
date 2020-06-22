@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "945ddbb2-db66-46c4-a140-0431ed8d3857",
+		"name": "API - Central de erros",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Autenticação",
+			"item": [
+				{
+					"name": "Autenticar Usuário",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "codenation",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "codenation",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/oauth/token?grant_type=password&username=joseantonio@email.com&password=joseantonio123",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "password"
+								},
+								{
+									"key": "username",
+									"value": "joseantonio@email.com"
+								},
+								{
+									"key": "password",
+									"value": "joseantonio123"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Salvar Usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"José Antônio\",\n\t\"email\": \"joseantonio@email.com\",\n\t\"senha\": \"joseantonio123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Evento",
+			"item": [
+				{
+					"name": "Salvar Evento",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"level\": \"ERROR\",\n\t\"descricao\": \"Descricao do erro\",\n\t\"log\": \"Log de erro!\",\n\t\"origem\": \"localhost\",\n\t\"data\": \"21-06-2020\",\n\t\"quantidade\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/eventos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"eventos"
+							]
+						},
+						"description": "Valores válidos para o campo level: ERROR, WARNING ou INFO.\nFormato para data: dd-MM-yyyy"
+					},
+					"response": []
+				},
+				{
+					"name": "Lista de Eventos",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/eventos?size=5&page=1&level=ERROR",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"eventos"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "level",
+									"value": "ERROR"
+								}
+							]
+						},
+						"description": "Valores válidos para o campo level: ERROR, WARNING ou INFO.\nFormato para data: dd-MM-yyyy"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca evento por id",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/eventos/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"eventos",
+								"5"
+							]
+						},
+						"description": "Valores válidos para o campo level: ERROR, WARNING ou INFO.\nFormato para data: dd-MM-yyyy"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
