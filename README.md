@@ -36,6 +36,11 @@ Segue abaixo o passo a passo para execução do projeto:
 ### Demo do Projeto
 https://api-central-erros.herokuapp.com/
 
+#### Documentação com swagger
+
+https://api-central-erros.herokuapp.com/api/v1/swagger-ui.html
+
+
 ### Collection com requisições no postman
 1. Importe o 'API - Central de erros.postman_collection.json' no postman.
 
