@@ -33,6 +33,14 @@ Segue abaixo o passo a passo para execução do projeto:
   docker-compose up --build
 ```
 
+### Demo do Projeto
+https://api-central-erros.herokuapp.com/
+
+### Collection com request no postgres
+1. Importe o 'API - Central de erros.postman_collection.json' no postman.
+
+**Observação:** Caso esteja executando o projeto via docker o host 'localhost:8080' permanece, caso queira testar o demo do projeto que está no heroku altere de 'localhost:8080' para 'https://api-central-erros.herokuapp.com'
+
 ### Recursos da API
 
 #### POST /api/v1/usuarios
