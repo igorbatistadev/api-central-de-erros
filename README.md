@@ -26,7 +26,7 @@ Segue abaixo o passo a passo para execução do projeto:
 ```
 2. Navegue para a pasta do projeto
 ```
-  cd bureau-credit
+  cd api-central-de-erros
 ```
 3. Construa o projeto com o docker-compose
 ```
