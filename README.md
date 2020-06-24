@@ -34,7 +34,7 @@ Segue abaixo o passo a passo para execução do projeto:
 ```
 
 ### Demo do Projeto
-https://api-central-erros.herokuapp.com/
+https://api-central-erros.herokuapp.com/api/v1
 
 #### Documentação com swagger
 
@@ -48,7 +48,7 @@ https://api-central-erros.herokuapp.com/api/v1/swagger-ui.html
 
 ### Recursos da API
 
-#### POST /api/v1/usuarios
+#### POST /usuarios
 
 Cadastrar um usuário
 
@@ -61,7 +61,7 @@ Cadastrar um usuário
 }
 ```
 
-#### POST /api/v1/oauth/token
+#### POST /oauth/token
 Autenticar e buscar token
 
 ##### Parameters
@@ -89,7 +89,7 @@ Authorization: Basic Y29kZW5hdGlvbjpjb2RlbmF0aW9u
 ```
 Exemplo URI: http://localhost:8080/api/v1/oauth/token?grant_type=password&username=usuario@email.com&password=senhausuario
 
-### POST /api/v1/eventos
+### POST /eventos
 Cadastrar evento de erro
 
 #### Body
@@ -110,7 +110,7 @@ Cadastrar evento de erro
 Authorization - Bearer <access_token>
 
 
-### GET /api/v1/eventos
+### GET /eventos
 Buscar lista de eventos
 
 #### Parameters
@@ -185,7 +185,7 @@ Authorization - Bearer <access_token>
 Exemplo URI: http://localhost:8080/api/v1/eventos?size=5&page=1&level=WARNING
 
 
-### GET /api/v1/eventos/{id}
+### GET /eventos/{id}
 Buscar evento por id
 
 #### Headers
